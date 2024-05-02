@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Hello World
+      - name: Say Hello
         run: echo 'Hello World'
+      - name: Now it is
+        run: date
+      - name: Directory content
+        run: ls -l
