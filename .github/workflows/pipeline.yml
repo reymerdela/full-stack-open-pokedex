@@ -18,3 +18,9 @@ jobs:
         run: npm run build
       - name: test
         run: npm run test
+      - name: Render Deploy Action
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{secrets.RENDER_SERVICE_ID}}
+          api-key: ${{secrets.RENDER_API}}
+          wait-for-success: true
