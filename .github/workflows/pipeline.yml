@@ -1,6 +1,13 @@
 name: simple_deployment_pipeline
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
