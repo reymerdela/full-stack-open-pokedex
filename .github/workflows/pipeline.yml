@@ -22,6 +22,7 @@ jobs:
       - name: lint
         run: npm run eslint
       - name: buid
+        if: ${{github.event.name == 'push'}}
         run: npm run build
       - name: test
         run: npm run test
@@ -31,3 +32,13 @@ jobs:
           service-id: ${{secrets.RENDER_SERVICE_ID}}
           api-key: ${{secrets.RENDER_API}}
           wait-for-success: true
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    if: ${{github.event.name == 'push'}}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          DEFAULT_BUMP: patch
