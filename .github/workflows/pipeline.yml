@@ -22,7 +22,7 @@ jobs:
       - name: lint
         run: npm run eslint
       - name: buid
-        if: ${{github.event.name == 'push'}}
+        if: ${{github.event_name == 'push'}}
         run: npm run build
       - name: test
         run: npm run test
@@ -34,7 +34,7 @@ jobs:
           wait-for-success: true
   tag_release:
     needs: [simple_deployment_pipeline]
-    if: ${{github.event.name == 'push'}}
+    if: ${{github.event_name == 'push'}}
     runs-on: ubuntu-20.04
     steps:
       - name: Bump version and push tag
